@@ -1,0 +1,50 @@
+<div id="wrapper">
+
+  <header>
+    <div class="searchSection">
+      <h1>Gif Search</h1>
+      <div class="inputSection">
+        <input class="searchText" type="text" name="searchText" id="searchText"
+          placeholder="What are you looking for ?">
+        <select class="minimal">
+          <option>Show All</option>
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+          <option>25</option>
+          <option>30</option>
+          <option>35</option>
+        </select>
+      </div>
+      <h2>You can search any Gif with our search</h2>
+      <h4>Everything you need for your creative projects, websites, banners, presentations, magazines and advertising.
+      </h4>
+    </div>
+  </header>
+  <section id="gifImageSection">
+    <div class="imageContainer">
+      <ng-container *ngFor="let image of imageList;let index=index;trackBy:id">
+        <img
+          src="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=025be2034lyw3vwk2v1nu10ctzgwmjov3q8mi1p3p9x7o5lr&rid=giphy.gif&ct=g"
+          *ngIf="image.load==null || image.load==false" alt="">
+        <img [src]="image.images.original.url" alt="" (load)="onLoad($event,image,index)">
+      </ng-container>
+    </div>
+  </section>
+  <footer>
+    <div id="formAndLinks">
+      <div id="signupForm">
+        <h2>Sign up and</h2>
+        <h2>Get free content every week</h2>
+      </div>
+      <div id="categories">
+        <h2>Browse by categories</h2>
+      </div>
+    </div>
+    <div id="pageWithLinks">
+
+    </div>
+  </footer>
+
+</div>
