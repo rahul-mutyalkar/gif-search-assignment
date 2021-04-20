@@ -12,10 +12,10 @@ export class GiphyService {
     this.http = http;
 }
 
-searchGif(gifName)
+searchGif(gifName,limit)
 {
   // https://api.giphy.com/v1/gifs/search?api_key=IHZbkzq78EUShpjoDd6MtIZHtC2p7X3k&q=excel&limit=25&offset=0&rating=g&lang=en
-  var apiLink:any =`${environment.apiKey}search?api_key=${environment.gifApiKey}&q=${gifName}&limit=5&offset=0&rating=g&lang=en`;
+  var apiLink:any =`${environment.apiKey}search?api_key=${environment.gifApiKey}&q=${gifName}&limit=${limit}&offset=0&rating=g&lang=en`;
 return this.http.get(apiLink);
 }
 }

@@ -1,70 +1,104 @@
 <div id="wrapper">
-<!-- Header Section -->
-<!-- Starts Here -->
+  <!-- Header Section -->
+  <!-- Starts Here -->
   <header>
     <div id="searchSection">
       <h1>Gif Search</h1>
       <div class="inputSection">
-        <input class="searchText" type="text" name="searchText" id="searchText"
-          placeholder="What are you looking for ?">
-        <select class="minimal">
-          <option>Show All</option>
-          <option>5</option>
-          <option>10</option>
-          <option>15</option>
-          <option>20</option>
-          <option>25</option>
-          <option>30</option>
-          <option>35</option>
+        <input class="searchText" type="text" name="searchText" id="searchText" placeholder="What are you looking for ?"
+          [(ngModel)]="searchText">
+        <select class="minimal" [(ngModel)]="limit">
+          <option [value]="null">Show All</option>
+          <option [value]="count" *ngFor="let count of limitList">{{count}}</option>
         </select>
-        <button id="searchBtn"><i class="fa fa-search"></i></button>
+        <button id="searchBtn" (click)="searchApi(gifImageSection)"><i class="fa fa-search"></i></button>
       </div>
       <h2>You can search any Gif with our search</h2>
       <h4>Everything you need for your creative projects, websites, banners, presentations, magazines and advertising.
       </h4>
-      
+
     </div>
   </header>
   <!-- Ends Here -->
+
   <!-- Gif Image Section -->
   <!-- Starts Here -->
-  <section id="gifImageSection">
+  <section id="gifImageSection" #gifImageSection>
     <div class="imageContainer">
       <ng-container *ngFor="let image of imageList;let index=index;trackBy:id">
         <img
           src="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=025be2034lyw3vwk2v1nu10ctzgwmjov3q8mi1p3p9x7o5lr&rid=giphy.gif&ct=g"
           *ngIf="image.load==null || image.load==false" alt="">
-        <img [src]="image.images.original.url" alt="" (load)="onLoad($event,image,index)">
+        <img [src]="image.images.original.url" alt="" (load)="onLoad($event,image,index)" title="loading, Please wait">
       </ng-container>
+      <div class="noData" *ngIf="httpStatus==false && (imageList==null || imageList.length==0)">
+        <i class="fa fa-exclamation-triangle fa-3x"></i>
+        <h1>
+          No Gif Image to show
+        </h1>
+      </div>
+      <div class="noData" *ngIf="httpStatus==true && (imageList!=null || imageList.length>0)">
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <h1>
+          Loading Images Please wait
+        </h1>
+        <!-- httpStatus -->
+      </div>
     </div>
   </section>
   <!-- Ends Here -->
+
   <!-- footer section  -->
   <!-- Starts Here -->
   <footer>
     <div id="formAndLinks">
       <div id="signupForm">
-        <h2>Sign up and</h2>
-        <h2>Get free content every week</h2>
+        <h2>Sign up and <br> Get free content every week</h2>
+        <!-- <h2></h2> -->
         <input id="signupEmail" type="text" name="signupEmail" placeholder="Enter your email...">
+        <button id="signupBtn">Sign Up</button>
       </div>
       <div id="categories">
         <h2>Browse by categories</h2>
         <div id="linkSection">
           <ng-container *ngFor="let category of categoryList">
-            <p class="categoryLinks">
+            <a class="categoryLinks" [title]="category">
               {{category}}
-            </p>
+            </a>
           </ng-container>
         </div>
       </div>
-      
     </div>
     <div id="pageWithLinks">
+      <div class="copyrightSection">
+        <div class="footerLinks">
+          <a href="">Affiliates /</a>
+          <a href="">Contributors /</a>
+          <a href="">Press Media /</a>
+          <a href="">Careers /</a>
+          <a href="">About /</a>
+          <a href="">Contact /</a>
 
+        </div>
+        <p class="copyrightText">Copyright <i class="far fa-copyright"></i> 2018 myCompany All rights reserved</p>
+      </div>
+      <div class="socialLinkSection">
+        <a href="#" class="socialIcon">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="socialIcon">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="socialIcon">
+          <i class="fab fa-google-plus-g"></i>
+        </a>
+        <a href="#" class="socialIcon">
+          <i class="fab fa-slack"></i>
+        </a>
+
+      </div>
     </div>
   </footer>
   <!-- Ends here -->
 
 </div>
-
