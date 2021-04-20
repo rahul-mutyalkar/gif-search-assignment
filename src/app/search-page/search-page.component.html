@@ -1,7 +1,8 @@
 <div id="wrapper">
-
+<!-- Header Section -->
+<!-- Starts Here -->
   <header>
-    <div class="searchSection">
+    <div id="searchSection">
       <h1>Gif Search</h1>
       <div class="inputSection">
         <input class="searchText" type="text" name="searchText" id="searchText"
@@ -16,12 +17,17 @@
           <option>30</option>
           <option>35</option>
         </select>
+        <button id="searchBtn"><i class="fa fa-search"></i></button>
       </div>
       <h2>You can search any Gif with our search</h2>
       <h4>Everything you need for your creative projects, websites, banners, presentations, magazines and advertising.
       </h4>
+      
     </div>
   </header>
+  <!-- Ends Here -->
+  <!-- Gif Image Section -->
+  <!-- Starts Here -->
   <section id="gifImageSection">
     <div class="imageContainer">
       <ng-container *ngFor="let image of imageList;let index=index;trackBy:id">
@@ -32,19 +38,33 @@
       </ng-container>
     </div>
   </section>
+  <!-- Ends Here -->
+  <!-- footer section  -->
+  <!-- Starts Here -->
   <footer>
     <div id="formAndLinks">
       <div id="signupForm">
         <h2>Sign up and</h2>
         <h2>Get free content every week</h2>
+        <input id="signupEmail" type="text" name="signupEmail" placeholder="Enter your email...">
       </div>
       <div id="categories">
         <h2>Browse by categories</h2>
+        <div id="linkSection">
+          <ng-container *ngFor="let category of categoryList">
+            <p class="categoryLinks">
+              {{category}}
+            </p>
+          </ng-container>
+        </div>
       </div>
+      
     </div>
     <div id="pageWithLinks">
 
     </div>
   </footer>
+  <!-- Ends here -->
 
 </div>
+
